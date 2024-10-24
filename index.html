@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="auth">
+            <div class="signin-page">
+                <h1>Please sign-in an account to continue</h1>
+
+                <div class="form-container">
+
+                    <div class="form-group">
+                        <p>Username</p>
+                        <input type="text" id="username" placeholder="Enter your username">
+                        <div class="empty-field signin-username" style="display: none;">Please don't leave this field empty</div>
+                    </div>
+
+                    <div class="form-group">
+                        <p>Password</p>
+                        <div class="password-form">
+                            <input type="password" id="password" placeholder="Enter your password">
+                            <button class="show-password">Show Password</button>
+                        </div>
+                        <div class="empty-field signin-password" style="display: none;">Please don't leave this field empty</div>
+                    </div>
+
+                    <button id="signin-btn" onclick="signIn()">Sign-in</button>
+
+                </div>
+
+                <p>Don't have an account yet? <span class="signup-redirect" onclick="redirectToSignUp()">Sign-up</span></p>
+
+            </div>
+
+            <div class="signup-page">
+                <h1>Please Sign-up for an account to continue</h1>
+
+                <div class="form-container">
+
+                    <div class="form-group">
+                        <p>Username</p>
+                        <input type="text" id="new-username" placeholder="Enter your new username">
+                        <div class="empty-field signup-username" style="display: none;">Please don't leave this field empty</div>
+                    </div>
+
+                    <div class="form-group">
+                        <p>Password</p>
+                        <div class="password-form">
+                            <input type="password" id="new-password" placeholder="Enter your new password">
+                            <button class="show-password">Show Password</button>
+                        </div>
+                        <div class="empty-field signup-password" style="display: none;">Please don't leave this field empty</div>
+                    </div>
+
+                    <div class="form-group">
+                        <p>Confirm Password</p>
+                        <div class="password-form">
+                            <input type="password" id="confirm-password" placeholder="Confirm your new password">
+                            <button class="show-password">Show Password</button>
+                        </div>
+                        <div class="empty-field confirm-password" style="display: none;">Please don't leave this field empty</div>
+                    </div>
+
+                    <button id="signup-btn" onclick="signUp()">Sign-up</button>
+
+                </div>
+
+                <p>Already have an account? <span class="signin-redirect" onclick="redirectToSignIn()">Sign-in</span></p>
+            </div>
+        </div>
+    
+        <div class="app">
+            <button id="signout-btn" onclick="signOut()">Sign-out</button>
+            <h1>To-do List</h1>
+
+            <div class="get-task-input">
+                <input type="text" id="task-name" placeholder="Enter task name">
+                <button id="add-btn">Add</button>
+            </div>
+
+            <div class="task-container"></div>
+        </div>
+    
+    </div>
+    <script src="./auth.js"></script>
+</body>
+
+</html>
