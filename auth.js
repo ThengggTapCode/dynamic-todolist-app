@@ -11,15 +11,20 @@ const signIn = () => {
     let username = document.getElementById('username').value.toLowerCase();
     let password = document.getElementById('password').value.toLowerCase();
 
-    document.querySelector('.signin-username').style.display = 'none';
-    document.querySelector('.signin-password').style.display = 'none';
+    const usernameInputMessage = document.querySelector('.signin-username');
+    const passwordInputMessgae = document.querySelector('.signin-password');
+
+    usernameInputMessage.style.display = 'none';
+    passwordInputMessgae.style.display = 'none';
 
     if (username === '') {
-        document.querySelector('.signin-username').style.display = 'block';
+        usernameInputMessage.innerText = "Please don't leave this field empty";
+        usernameInputMessage.style.display = 'block';
         return
     }
     if (password === '') {
-        document.querySelector('.signin-password').style.display = 'block';
+        passwordInputMessgae.innerText = "Please don't leave this field empty";
+        passwordInputMessgae.style.display = 'block';
         return;
     }
 
@@ -34,6 +39,11 @@ const signIn = () => {
                 checkSignedInState(signedInState);
                 return;
             }
+            passwordInputMessgae.innerText = 'The password is incorrect';
+            passwordInputMessgae.style.display = 'block';
+        } else {
+            usernameInputMessage.innerText = 'Username not found';
+            usernameInputMessage.style.display = 'block';
         }
     }
     return;
@@ -45,25 +55,31 @@ const signUp = () => {
     let password = document.getElementById('new-password').value.toLowerCase();
     let confirmPassword = document.getElementById('confirm-password').value.toLowerCase();
 
-    document.querySelector('.signup-username').style.display = 'none';
-    document.querySelector('.signup-password').style.display = 'none';
-    document.querySelector('.confirm-password').style.display = 'none';
+    const usernameInputMessage = document.querySelector('.signup-username');
+    const passwordInputMessage = document.querySelector('.signup-password');
+    const confirmPasswordInputMessage = document.querySelector('.confirm-password');
 
     if (username === '') {
-        document.querySelector('.signup-username').style.display = 'block';
+        usernameInputMessage.innerText = "Please don't leave this field empty";
+        usernameInputMessage.style.display = 'block';
         return;
     }
     if (password === '') {
-        document.querySelector('.signup-password').style.display = 'block';
+        passwordInputMessage.innerText = "Please don't leave this field empty";
+        passwordInputMessage.style.display = 'block';
         return;
     }
     if (confirmPassword === '') {
-        document.querySelector('.confirm-password').style.display = 'block';
+        confirmPasswordInputMessage.innerText = "Please don't leave this field empty";
+        confirmPasswordInputMessage.style.display = 'block';
         return;
     }
 
-    if (password !== confirmPassword)
+    if (password !== confirmPassword) {
+        confirmPasswordInputMessage.innerText = "The confirmed password didn't match!";
+        confirmPasswordInputMessage.style.display = 'block';
         return;
+    }
 
     if (localStorage.getItem('userList')) {
         let listUser = JSON.parse(localStorage.getItem('userList'));
@@ -71,8 +87,8 @@ const signUp = () => {
 
         for (let user of listUser) {
             if (username === user.username) {
-                document.querySelector('.signup-username').innerText = 'Username is already exist!';
-                document.querySelector('.signup-username').style.display = 'block';
+                usernameInputMessage.innerText = 'Username is already exist!';
+                usernameInputMessage.style.display = 'block';
                 return;
             }
         }
@@ -132,7 +148,7 @@ const showPasswordBtn = document.querySelectorAll('.show-password');
 showPasswordBtn.forEach(button => {
     button.addEventListener('click', () => {
         const input = button.previousElementSibling;
-        
+
         if (input.type === 'password') {
             input.type = 'text';
             return;
