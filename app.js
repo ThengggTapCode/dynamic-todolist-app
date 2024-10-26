@@ -28,6 +28,9 @@ const newTask = () => {
     taskContainer.appendChild(checkTaskBtn);
 
     taskList.appendChild(taskContainer);
+
+    saveTaskList(taskList.innerHTML);
+
     inputName.value = '';
     return;
 }
@@ -38,6 +41,8 @@ taskList.addEventListener('click', event => {
     if (event.target.classList.contains('delete-task-btn')) {
         clickedElement.parentElement.remove();
         untitledTaskCount = 0;
+
+        saveTaskList(taskList.innerHTML);
         return;
     }
 })
@@ -48,3 +53,11 @@ document.getElementById('task-name').addEventListener('keyup', event => {
         newTask();
     return;
 })
+
+const saveTaskList = (list) => {
+    localStorage.setItem('taskList', list);
+    return;
+}
+
+if (localStorage.getItem('taskList'))
+    taskList.innerHTML = localStorage.getItem('taskList');
